@@ -11,10 +11,13 @@ import "../proxy/utils/Initializable.sol";
  */
 abstract contract ERC2771ContextUpgradeable is Initializable, ContextUpgradeable {
     /// @custom:oz-upgrades-unsafe-allow state-variable-immutable
-    address private immutable _trustedForwarder;
+    address private _trustedForwarder;
 
-    /// @custom:oz-upgrades-unsafe-allow constructor
-    constructor(address trustedForwarder) {
+     function __ERC2771ContextUpgradeable_init(address trustedForwarder) internal onlyInitializing {
+        __ERC2771ContextUpgradeable_init_unchained(trustedForwarder);
+    }
+
+    function __ERC2771ContextUpgradeable_init_unchained(address trustedForwarder) internal onlyInitializing {
         _trustedForwarder = trustedForwarder;
     }
 
